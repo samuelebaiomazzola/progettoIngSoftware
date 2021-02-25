@@ -1,0 +1,2 @@
+# progettoIngSoftware
+progetto Ospite Social
