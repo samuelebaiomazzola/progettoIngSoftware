@@ -12,7 +12,9 @@ public class NewMain {
         Alloggio alloggio;
         OspiteSocial os = null;
         os = OspiteSocial.getInstance();
+        System.out.println(" ");
         
+        //Dati per l'utente:
         String nome = "saro";
         String cognome = "Baiomazzola";
         char sesso = 'M';
@@ -24,76 +26,127 @@ public class NewMain {
         Utente utente;
         
         
-        
         utente = os.inserisciUtente(nome, cognome, sesso, eta, email, cittaResidenza, cellulare, password);
-        //System.out.println(utente.toString());
+        System.out.println("[Metodo]: inserisci utente");
+        System.out.println("[Dati utente]:" + " " + utente.toString());
+        System.out.println(" ");
         
-        utente = os.vissualizzaUtente(email);
-        
-        //Per la prenotazione
-        Prenotazione prenotazione;
-        
-        Utente ospite1; String email1 = "ospite1.baiomazzola@studium.unict.it";
-        Utente ospite2; String email2 = "ospite2.baiomazzola@studium.unict.it";
-        
-        ospite1 = os.inserisciUtente(nome, cognome, sesso, eta, email1, cittaResidenza, cellulare, password);
-        ospite2 = os.inserisciUtente(nome, cognome, sesso, eta, email2, cittaResidenza, cellulare, password);
+        Utente visualizzaUtente = os.vissualizzaUtente(email);
+        System.out.println("[Metodo]: visulizza utente");
+        System.out.println("[Dati utente]:" + " " + visualizzaUtente);
+        System.out.println(" ");
         
         
-        List<Utente> ospiti = new ArrayList();
+        boolean modificaUtente = os.modificaDatiUtente(nome, cognome, sesso, eta, email, cittaResidenza, "3215698714", "baio96");
+        System.out.println("[Metodo]: modifica utente");
+        System.out.println("[Result metodo]:" + " " + modificaUtente);
+        System.out.println("[Dati utente modificati]:" + " "+ utente.toString());
+        System.out.println(" ");
         
-        ospiti.add(ospite1);
-        ospiti.add(ospite2);
         
-        
-        //System.out.println(os.vissualizzaUtente(email));*/
-        
+        //Dati per l'alloggio:
         String indirizzo = "Via Santa Sofia 64";
         String citta = "Catania";
         double distanzaCentro = 1.0;
         double distanzaMezzoPubblico = 1.5;
         Integer numeroMembriFamiglia = 4;
-        Integer numeroTotalePostiLetto = 3;
+        //Integer numeroTotalePostiLetto = 0;
         
         
-        alloggio = new Alloggio(indirizzo, citta, distanzaCentro, distanzaMezzoPubblico, numeroMembriFamiglia, numeroTotalePostiLetto);
-        //System.out.println(alloggio);
+        alloggio = utente.inserisciAlloggio(indirizzo, citta, distanzaCentro, distanzaMezzoPubblico, numeroMembriFamiglia);
+        System.out.println("[Metodo]: inserisci alloggio");
+        System.out.println("[Dati alloggio]:" + " " + alloggio);
+        System.out.println(" ");
         
+        
+        Alloggio visualizzaAlloggio = utente.visualizzaAlloggio(indirizzo);
+        System.out.println("[Metodo]: visualizza alloggio");
+        System.out.println("[Dati alloggio]:" + " " + visualizzaAlloggio);
+        System.out.println(" ");
+        
+        
+        //Dati per posto letto:
         Integer idLetto = 1;
         Integer numeroStanza = 1;
         String tipologiaStanza = "Privata";
         String tipologiaPostoLetto = "Letto";
         Integer numeroPostiLetto = 1;
         
-        System.out.println(alloggio.inserisciPostiLetto(idLetto, numeroStanza, tipologiaStanza, tipologiaPostoLetto, numeroPostiLetto));
-        PostoLetto postoLetto1 = alloggio.inserisciPostiLetto(2, 1, "Comune", "Divano Letto", 2);
-        //System.out.println(postoLetto1);
+        PostoLetto postoLetto1 = alloggio.inserisciPostiLetto(idLetto, numeroStanza, tipologiaStanza, tipologiaPostoLetto, numeroPostiLetto);
+        PostoLetto postoLetto2 = alloggio.inserisciPostiLetto(2, 1, "Comune", "Divano Letto", 2);
+        System.out.println("[Metodo]: inserisci posto letto");
+        System.out.println("[Dati posto letto 1]:" + " " + postoLetto1);
+        System.out.println("[Dati posto letto 2]:" + " " + postoLetto2);
+        System.out.println(" ");
         
-        List<PostoLetto> postiLetto = new ArrayList();
-        postiLetto.add(postoLetto1);
+        PostoLetto visualizzaPostoLetto = alloggio.visualizzaPostoLetto(idLetto);
+        System.out.println("[Metodo]: visualizza posto letto");
+        System.out.println("[Dati posto letto1]:" + " " + visualizzaPostoLetto);
         
-        prenotazione = new Prenotazione(utente, ospiti, Date.valueOf("2021-03-10"), Date.valueOf("2021-03-18"), alloggio, postiLetto);
-        
-        /*System.out.println(alloggio.visualizzaPostoLetto(idLetto));
-        System.out.println(alloggio.visualizzaPostoLetto(2));
-        System.out.println(alloggio.inserisciPeriodo(Date.valueOf("2021-03-10"), Date.valueOf("2021-03-18")));
-        System.out.println(alloggio.modificaDatiPostiLetto(idLetto, 2, "COmune", "Divano Letto", numeroPostiLetto));*/
-        
-        //System.out.println(alloggio.eliminaPostoLetto(idLetto));
-        
-        System.out.println(prenotazione);
-        System.out.println(alloggio.getNumeroTotalePostiLetto());
-        System.out.println(os.ricercaAlloggio("Catania", 5, Date.valueOf("2021-03-10"), Date.valueOf("2021-03-18")));
+        visualizzaPostoLetto = alloggio.visualizzaPostoLetto(2);
+        System.out.println("[Dati posto letto2]:" + " " + visualizzaPostoLetto);
+        System.out.println(" ");
         
         
-        List<String> listaOspiti = new ArrayList();
-        listaOspiti.add(email1);
-        listaOspiti.add(email2);
-        List<Prenotazione> listaPrenotazioni = new ArrayList();
-        listaPrenotazioni.add(prenotazione);
-        /*System.out.println(listaPrenotazioni);
-        System.out.println(os.richiestaPrenotazione(postiLetto, listaOspiti,  Date.valueOf("2021-03-18"), Date.valueOf("2021-03-10"), alloggio));
-        System.out.println(os.visualizzaRichiesta());*/
+        boolean modificaPostoLetto = alloggio.modificaDatiPostiLetto(idLetto, 2, "Comune", "Divano Letto", numeroPostiLetto);
+        System.out.println("[Metodo]: modifica posto letto");
+        System.out.println("[Result metodo]:" + " " + modificaPostoLetto);
+        System.out.println("[Dati modificati posto letto 1]:" + " " + postoLetto1);
+        System.out.println(" ");
+        
+        
+        boolean eliminaPostoLetto = alloggio.eliminaPostoLetto(idLetto);
+        System.out.println("[Metodo]: elimina posto letto");
+        System.out.println("[Result metodo]:" + " " + eliminaPostoLetto);
+        System.out.println(" ");
+        
+        
+        boolean modificaAlloggio = utente.modificaDatiAlloggio(indirizzo, citta, 2.0, 3.0, numeroMembriFamiglia);
+        System.out.println("[Metodo]: modifica alloggio");
+        System.out.println("[Result metodo]:" + " " + modificaAlloggio);
+        System.out.println("[Dati alloggio modificati]:" + " " + alloggio);
+        System.out.println(" ");
+        
+        //Dati per il periodo:
+        Date dataInizioSoggiorno = Date.valueOf("2021-03-10");
+        Date dataFineSoggiorno = Date.valueOf("2021-03-18");
+        
+        boolean periodo = alloggio.inserisciPeriodo(dataInizioSoggiorno, dataFineSoggiorno);
+        System.out.println("[Metodo]: inserisci periodo");
+        System.out.println("[Result metodo]:" + " " + periodo);
+        System.out.println("[Dati periodo]:" + alloggio.getCalendario().get(0));
+        System.out.println(" ");
+        
+        
+        Periodo visualizzaPeriodo = alloggio.visualizzaPeriodo(0);
+        System.out.println("[Metodo]: visualizza periodo");
+        System.out.println("[Dati periodo]:" + visualizzaPeriodo);
+        System.out.println(" ");
+        
+        
+        periodo = alloggio.modificaPeriodo(0, Date.valueOf("2021-03-13"), Date.valueOf("2021-03-20"));
+        System.out.println("[Metodo]: modificaPeriodo");
+        System.out.println("[Result metodo]:" + " " + periodo);
+        System.out.println("[Dati periodo]:" + alloggio.getCalendario().get(0));
+        System.out.println(" ");
+        
+        
+        boolean elimina = alloggio.eliminaPeriodo(0);
+        System.out.println("[Metodo]: eliminaPeriodo");
+        System.out.println("[Result metodo]:" + " " + elimina);
+        System.out.println(" ");
+        
+        
+        elimina = utente.eliminaAlloggio(indirizzo);
+        System.out.println("[Metodo]: eliminaAlloggio");
+        System.out.println("[Result metodo]:" + " " + elimina);
+        System.out.println(" ");
+        
+        
+        elimina = os.eliminaUtente(email);
+        System.out.println("[Metodo]: eliminaUtente");
+        System.out.println("[Result metodo]:" + " " + elimina);
+        
     }
     
 }

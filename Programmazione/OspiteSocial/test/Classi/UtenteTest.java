@@ -48,7 +48,6 @@ public class UtenteTest {
         System.out.println("visualizzaAlloggio");
         String indirizzo = "Via Roma 45";
         
-        
         Alloggio result = utenteController.visualizzaAlloggio(indirizzo);
         assertNotNull(result);
         
@@ -64,9 +63,8 @@ public class UtenteTest {
         double distanzaCentro = 20.0;
         double distanzaMezzoPubblico = 2.5;
         Integer numeroMembriFamiglia = 7;
-        Integer numeroTotalePostiLetto = 7;
         
-        boolean result = utenteController.modificaDatiAlloggio(indirizzo, citta, distanzaCentro, distanzaMezzoPubblico, numeroMembriFamiglia, numeroTotalePostiLetto);
+        boolean result = utenteController.modificaDatiAlloggio(indirizzo, citta, distanzaCentro, distanzaMezzoPubblico, numeroMembriFamiglia);
         assertTrue(result);
         
         //fail("The test case is a prototype.");
@@ -84,5 +82,4 @@ public class UtenteTest {
         //fail("The test case is a prototype.");
     }
     
-    //dire a Giulia dell'idAlloggio.
 }

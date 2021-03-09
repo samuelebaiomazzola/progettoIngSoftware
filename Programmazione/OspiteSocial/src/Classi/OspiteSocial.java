@@ -2,7 +2,6 @@ package Classi;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class OspiteSocial {
@@ -121,11 +120,8 @@ public class OspiteSocial {
             
             
             for(int i=0;i<alloggi.size();i++){
-                System.out.println(cittaDestinazione);
                 alloggioTmp=alloggi.get(i);
                 
-                    System.out.println(cittaDestinazione + " " + alloggioTmp.getCitta());
-                    //System.out.println(utente.getAlloggi());
                     if(alloggioTmp.getCitta().compareTo(cittaDestinazione)==0 && utente.getAlloggi().contains(alloggioTmp)==false){
                         if(alloggioTmp.verificaDisponibilita(dataInizioSoggiorno,dataFineSoggiorno)){
                             posti=alloggioTmp.getNumeroTotalePostiLetto();
@@ -235,7 +231,7 @@ public class OspiteSocial {
         
         Prenotazione prenotazione;
             for(int i=0;i<prenotazioni.size();i++){
-                prenotazione=prenotazioni.get(i);
+                prenotazione = prenotazioni.get(i);
                     if(prenotazione.getUtenteOspitante().getEmail().compareTo(this.EmailLoggato())==0){
                         prenotazioniNew.add(prenotazione);
                     }
@@ -261,35 +257,33 @@ public class OspiteSocial {
         Alloggio a;
         int posti = 0;
         
-        //if((prenotazione.getDataInizioSogg() < dataInizioSoggiorno) && (dataFineSoggiorno > )){
-                a = prenotazione.getAlloggio();
-            if(a.verificaDisponibilita(dataFineSoggiorno, dataFineSoggiorno) == true){
-                for(int i =0; i<prenotazione.getAlloggio().getCalendario().size(); i++){
-                   Periodo p = prenotazione.getAlloggio().getCalendario().get(i);
-                   p.confrontaPeriodo(dataInizioSoggiorno, dataFineSoggiorno);
-                }
-                    posti = prenotazione.getAlloggio().getNumeroTotalePostiLetto();
+        a = prenotazione.getAlloggio();
+        if(a.verificaDisponibilita(dataFineSoggiorno, dataFineSoggiorno) == true){
+            for(int i =0; i<prenotazione.getAlloggio().getCalendario().size(); i++){
+               Periodo p = prenotazione.getAlloggio().getCalendario().get(i);
+               p.confrontaPeriodo(dataInizioSoggiorno, dataFineSoggiorno);
             }
-            if(prenotazione.getStato().compareTo("Confermata")==0 || prenotazione.getStato().compareTo("In corso")==0 || prenotazione.getStato().compareTo("Da confermare")==0){
-                for(int i =0; i<prenotazioni.size(); i++){
-                    Prenotazione pre = prenotazioni.get(i);
-                    alloggioPre = pre.getAlloggio();
-                    
-                    if(alloggioPre == a){
-                        posti = prenotazione.controlloPostiLetto(posti, dataFineSoggiorno, dataFineSoggiorno);
-                        if(prenotazione.controlloPeriodo(dataInizioSoggiorno, dataFineSoggiorno)){
-                            int pos = alloggioPre.getNumeroTotalePostiLetto();
-                        }
+                posti = prenotazione.getAlloggio().getNumeroTotalePostiLetto();
+        }
+        if(prenotazione.getStato().compareTo("Confermata")==0 || prenotazione.getStato().compareTo("In corso")==0 || prenotazione.getStato().compareTo("Da confermare")==0){
+            for(int i =0; i<prenotazioni.size(); i++){
+                Prenotazione pre = prenotazioni.get(i);
+                alloggioPre = pre.getAlloggio();
+
+                if(alloggioPre == a){
+                    posti = prenotazione.controlloPostiLetto(posti, dataFineSoggiorno, dataFineSoggiorno);
+                    if(prenotazione.controlloPeriodo(dataInizioSoggiorno, dataFineSoggiorno)){
+                        int pos = alloggioPre.getNumeroTotalePostiLetto();
                     }
                 }
             }
-        //}
-       //controllo se il numero di ospitanti coincide con la reale disponibilità di posti letto nell'abitazione
-       for(int i=0;i<prenotazione.getPostiLetto().size();i++){
-           posti+=prenotazione.getPostiLetto().get(i).getNumeroPostiLetto(); 
-       }
-       if( ! (posti== prenotazione.getOspiti().size() || posti==(prenotazione.getOspiti().size() + 1))  )return false;
-       return false;  
+        }
+        //controllo se il numero di ospitanti coincide con la reale disponibilità di posti letto nell'abitazione
+        for(int i=0;i<prenotazione.getPostiLetto().size();i++){
+            posti+=prenotazione.getPostiLetto().get(i).getNumeroPostiLetto(); 
+        }
+        if( ! (posti== prenotazione.getOspiti().size() || posti==(prenotazione.getOspiti().size() + 1))  )return false;
+        return false;  
     }
     
     public boolean eliminaPrenotazione(Prenotazione prenotazione){
@@ -298,7 +292,6 @@ public class OspiteSocial {
             return true;
         }
         return false;
-
     }
     
     public Utente getUtente() {
@@ -308,6 +301,6 @@ public class OspiteSocial {
     public List<Prenotazione> getPrenotazioni() {
         return prenotazioni;
     }
-      
+    
 }
 

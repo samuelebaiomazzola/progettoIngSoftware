@@ -41,5 +41,4 @@ public class Periodo {
         return "Periodo{" + "dataInizio=" + dataInizio + ", dataFine=" + dataFine + '}';
     }
     
-    
 }

@@ -51,14 +51,14 @@ public class Utente {
         return null;
     }
     
-    public boolean modificaDatiAlloggio(String indirizzo, String citta, double distanzaCentro, double distanzaMezzoPubblico, Integer numeroMembriFamiglia, Integer numeroTotalePostiLetto){
+    public boolean modificaDatiAlloggio(String indirizzo, String citta, double distanzaCentro, double distanzaMezzoPubblico, Integer numeroMembriFamiglia){
             for(int i=0;i<alloggi.size();i++){
                 if(alloggi.get(i).getIndirizzo().compareTo(indirizzo)==0){
                     alloggi.get(i).setCitta(citta);
                     alloggi.get(i).setDistanzaCentro(distanzaCentro);
                     alloggi.get(i).setDistanzaMezzoPubblico(distanzaMezzoPubblico);
                     alloggi.get(i).setNumeroMembriFamiglia(numeroMembriFamiglia);
-                    alloggi.get(i).setNumeroTotalePostiLetto(numeroTotalePostiLetto);
+                    //alloggi.get(i).setNumeroTotalePostiLetto(numeroTotalePostiLetto);
                     return true;
                 }
             }

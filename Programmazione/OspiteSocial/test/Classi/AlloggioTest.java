@@ -29,7 +29,7 @@ public class AlloggioTest {
         Integer numeroTotalePostiLetto = 3;
         
         alloggioController = new Alloggio(indirizzo, citta, distanzaCentro, distanzaMezzoPubblico, numeroMembriFamiglia, numeroTotalePostiLetto);
-        System.out.println(alloggioController);
+        //System.out.println(alloggioController);
     }
     
     @Test // Test of inserisciPeriodo method, of class Alloggio.
@@ -90,7 +90,7 @@ public class AlloggioTest {
         
         
         PostoLetto result = alloggioController.inserisciPostiLetto(idLetto, numeroStanza, tipologiaStanza, tipologiaPostoLetto, numeroPostiLetto);
-        System.out.println(result);
+        //System.out.println(result);
         assertNotNull(result);
         
         // fail("The test case is a prototype.");
@@ -103,7 +103,7 @@ public class AlloggioTest {
         Integer idLetto = 1;
         
         PostoLetto result = alloggioController.visualizzaPostoLetto(idLetto);
-        System.out.println(result);
+        //System.out.println(result);
         assertNotNull(result);
         
         //fail("The test case is a prototype.");
